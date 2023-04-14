@@ -25,7 +25,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/sun_ra_ha_female.wav");
+	audio = loadSound("/GUZARISH.wav");
 }
 
 // function uploaded(file) {
@@ -108,6 +108,7 @@ function draw() {
 	// Decibel values of the amplitude
 	var decibel = parseInt(20*Math.log10(level))
 
+	// speed = map(level, 0, 1, -0.005, -0.008)
 
 	// var decibels = fft.analyze(scale = "dB") // this does not stay within a decent range
 
@@ -120,14 +121,15 @@ function draw() {
 	// console.log(`bass is ${bass}, mid - ${mid}, treble - ${treble}`)
 
 	var mapMid = map(mid, 0, 255, -100, 100);
-	var scaleMid = map(mid, 0, 255, 1, 1.5);
+	var scaleMid = map(mid, 0, 255, 0.005, 0.03);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
 	var scaleTreble = map(treble, 0, 255, 0.005, 0.02);
+	// var treble_speed = map(treble, 0, 255, 0.-0.005, -0.002);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
-	var shapebass = map(bass, 0, 255, 0, 3);
+	var shapebass = map(bass, 0, 255, 2, 5);
 
 	pieces = 2*spectrogram.length;
 	radius = 100;
@@ -155,7 +157,7 @@ function draw() {
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
 
-		var rad_change = radius * r * scaleTreble
+		var rad_change = radius * r * scaleMid
 
 		fill(i, colorPalette[color_index], colorPalette[color_index+1])
 		rect(0, radius/2, 2,  rad_change)
@@ -178,7 +180,7 @@ function draw() {
     	// stroke(255)
 		rotate(frameCount * 0.02 * mid_rot);
 		scale(scalebass/2 + 0.4)
-		strokeWeight(0.8);
+		strokeWeight(0.5);
 		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+shapebass);
 		// x1, y1, x2, y2
 		pop();
@@ -197,7 +199,7 @@ function draw() {
 		/*----------  TREMBLE  ----------*/
 		push();
 		stroke(colorPalette[color_index])
-		strokeWeight(0.5);
+		strokeWeight(1);
 		scale(0.8);
 		rotate((frameCount * -0.005));
 		polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
