@@ -125,6 +125,7 @@ function draw() {
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
+	var shapebass = map(bass, 0, 255, 0, 3);
 
 	pieces = 2*spect.length;
 	radius = 100;
@@ -226,7 +227,7 @@ function draw() {
 		rotate(frameCount * 0.02 * mid_rot);
 		scale(scalebass/2 + 0.4)
 		strokeWeight(0.8);
-		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+2*parseInt(scalebass));
+		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+shapebass);
 		// x1, y1, x2, y2
 		pop();
 
