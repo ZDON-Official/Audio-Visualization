@@ -25,7 +25,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/GUZARISH.wav");
+	audio = loadSound("/Dhoom.wav");
 }
 
 // function uploaded(file) {
@@ -69,7 +69,7 @@ function setup() {
 	// Amplitude measures volume between 0.0 and 1.0
 	analyzer = new p5.Amplitude();
 	fft = new p5.FFT();
-	amp_fft = new p5.FFT(0.9, 128)
+	amp_fft = new p5.FFT(0.9, 1024)
 	space_between_lines = width / 128
 
 	audio.loop();
@@ -134,8 +134,6 @@ function draw() {
 	pieces = 2*spectrogram.length;
 	radius = 100;
 
-  	// stroke( 235, 0, 255 ) // the color of the eclipse
-  	// ellipse( 0, 0, radius )
 	noFill()
 
 
@@ -159,8 +157,9 @@ function draw() {
 
 		var rad_change = radius * r * scaleMid
 
-		fill(i, colorPalette[color_index], colorPalette[color_index+1])
-		rect(0, radius/2, 2,  rad_change)
+		// fill(i, colorPalette[color_index], colorPalette[color_index+1])
+		fill(colorPalette[color_index])
+		rect(0, radius/2, 1,  rad_change)
 		pop()
 	}
 
