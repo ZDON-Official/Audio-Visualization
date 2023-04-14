@@ -52,6 +52,7 @@ function setup() {
 	createCanvas(windowWidth, windowHeight-50);
 
 	frameRate(30)
+	// colorMode(HSB)
 	// angleMode(DEGREES)
 
 	toggleBtn = createButton("Play / Pause");
