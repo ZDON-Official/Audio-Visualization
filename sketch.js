@@ -25,7 +25,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/Nagada.wav");
+	audio = loadSound("/sun_ra_ha_female.wav");
 }
 
 // function uploaded(file) {
@@ -123,7 +123,7 @@ function draw() {
 	var scaleMid = map(mid, 0, 255, 1, 1.5);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
-	var scaleTreble = map(treble, 0, 255, 0, 30);
+	var scaleTreble = map(treble, 0, 255, 0.005, 0.02);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
@@ -151,11 +151,11 @@ function draw() {
 
 		push()
 		r = (isNaN(spectrogram[i])) ? (r = 1) : (map(spectrogram[i], 0, 256, 10, 70))
-		rotate(frameCount * 0.03); // TODO - change the speed based on decibel or something
+		rotate(frameCount * -0.03); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
 
-		var rad_change = radius * r * 0.015
+		var rad_change = radius * r * scaleTreble
 
 		fill(i, colorPalette[color_index], colorPalette[color_index+1])
 		rect(0, radius/2, 2,  rad_change)
