@@ -1,5 +1,6 @@
 var pieces, radius, fft, analyzer, mapMouseX, mapMouseY, audio, toggleBtn, uploadBtn, uploadedAudio, uploadAnim;
 var color_index = 0
+var spect_speed = 0.02
 var r = 0
 var mid_rot = -1
 /*
@@ -24,7 +25,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/GUZARISH.wav");
+	audio = loadSound("/Nagada.wav");
 }
 
 // function uploaded(file) {
@@ -96,7 +97,7 @@ function draw() {
 	translate(windowWidth / 2, windowHeight / 2);
 
 	// Middle circle spectrogram
-	let spect = amp_fft.analyze()
+	let spectrogram = amp_fft.analyze()
 
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
@@ -128,83 +129,33 @@ function draw() {
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
 	var shapebass = map(bass, 0, 255, 0, 3);
 
-	pieces = 2*spect.length;
+	pieces = 2*spectrogram.length;
 	radius = 100;
 
   	// stroke( 235, 0, 255 ) // the color of the eclipse
   	// ellipse( 0, 0, radius )
 	noFill()
 
-	//! ==========================================================
-	//! CODE FOR DECIBEL AND COLOR STUFF - RINKI
 
-	// console.log(`decibel value - ${decibel}`)
-
-	// map decibel values by increments of 5, where decibel ranges from -60 to 0
-	color_index = 0; //? should this start at 0 or -100?
-
-	// if(decibel > 0 || decibel < -60){
-	// 	console.log(decibel)
-	// }
-
-	// color_index = parseInt(map(decibel, -60, 0, 0, colorPalette.length)) // Need to test this
-
+	// map decibel values
 	// if color_index < 0  or is NaN (Not a Number), then color_index = 0, else map to decibel val
 	color_index =
 	(isNaN(parseInt(decibel)) || (decibel < -60))
 	? (color_index = 0) : (parseInt(map(decibel, -60, 0, 0, colorPalette.length-1)))
 
-	// if(color_index < 0){
-	// 	// color_index = 0
-	// 	console.log(`color index is ${color_index}`)
-	// 	console.log(`decibel value - ${decibel}`)
-	// }
+	// spect_speed = (isNaN(parseInt(decibel)) || (decibel < -60)) ? (spect_speed = 0.002) : (map(decibel, -60, 0, 0.002, 0.01))
+	// console.log(`speed is ${spect_speed} and decibel is ${decibel}`)
 
-	// console.log(`color index is ${color_index}`)
-	//! ==========================================================
-	//! ==========================================================
-
-	// console.log(height)
-	// ! ------------------ drawing amplitude
-	// console.log(level)
-
-	// beginShape()
-	// for (let i = 0; i < spect.length; i++) {
-	// 	// TODO - Error with color inedx when audio loops
-	// 	stroke(colorPalette[color_index])
-	// 	// stroke(255)
-	// 	// fill(bass, mid, treble)
-	// 	let r = map(ampHistory[i], 0, 1, 50, 500); // ! CHANGE Val of 400
-	// 	let x = r*cos(i)
-	// 	let y = r*sin(i)
-	// 	// console.log(x, y)
-	// 	vertex(x, y);
-	// }
-	// endShape()
-
-
-	// if(ampHistory.length > 360) {
-	// 	ampHistory.splice(0,1);
-	// }
-
-	// console.log(`spec is ${spect}`)
-
-
-	for(i=0; i<spect.length; i += 1){
+	for(i=0; i<spectrogram.length; i += 1){
 		rotate(TWO_PI / (pieces / 2))
-		// noFill()
 
 		push()
-		// console.log(`spect ${spect[i]}`)
-		r = (isNaN(spect[i])) ? (r = 1) : (map(spect[i], 0, 256, 10, 70))
-		// console.log(`r - ${r}`)
-		// console.log(frameCount)
-		rotate(frameCount * 0.002);
+		r = (isNaN(spectrogram[i])) ? (r = 1) : (map(spectrogram[i], 0, 256, 10, 70))
+		rotate(frameCount * 0.03); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
 
 		var rad_change = radius * r * 0.015
-		// console.log(`rad change is ${rad_change}`)
 
 		fill(i, colorPalette[color_index], colorPalette[color_index+1])
 		rect(0, radius/2, 2,  rad_change)
@@ -246,7 +197,7 @@ function draw() {
 		/*----------  TREMBLE  ----------*/
 		push();
 		stroke(colorPalette[color_index])
-		strokeWeight(0.3);
+		strokeWeight(0.5);
 		scale(0.8);
 		rotate((frameCount * -0.005));
 		polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
