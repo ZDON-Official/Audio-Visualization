@@ -92,7 +92,7 @@ function draw() {
 
 	// background("#02073c");
 	// background('rgba(0,255,0, 0.25)')
-	background(20)
+	// background(20)
 
 	translate(windowWidth / 2, windowHeight / 2);
 
@@ -130,6 +130,10 @@ function draw() {
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
 	var shapebass = map(bass, 0, 255, 2, 5);
+
+
+	background(mapbass/3, mapMid/2, mapTreble/5)
+
 
 	pieces = 2*spectrogram.length;
 	radius = 100;
