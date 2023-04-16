@@ -3,6 +3,8 @@ var color_index = 0
 var spect_speed = 0.02
 var r = 0
 var mid_rot = -1
+var speed = 0.002
+
 /*
 order of colors:
 white ffffff, red ff0000, dark purple 330099,
@@ -25,7 +27,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/GUZARISH.wav");
+	audio = loadSound("/Wo Tanha Kon Hai.wav");
 }
 
 // function uploaded(file) {
@@ -72,6 +74,10 @@ function setup() {
 	amp_fft = new p5.FFT(0.9, 1024)
 	space_between_lines = width / 128
 
+	// speed = amp_fft.analyze()
+	// console.log(speed)
+
+
 	audio.loop();
 }
 
@@ -98,7 +104,6 @@ function draw() {
 
 	// Middle circle spectrogram
 	let spectrogram = amp_fft.analyze()
-
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
 	ampHistory.push(level)
