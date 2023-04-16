@@ -104,6 +104,7 @@ function draw() {
 
 	// Middle circle spectrogram
 	let spectrogram = fft.analyze()
+	// console.log(`length is ${spectrogram.length}`)
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
 	ampHistory.push(level)
@@ -156,11 +157,12 @@ function draw() {
 	// spect_speed = (isNaN(parseInt(decibel)) || (decibel < -60)) ? (spect_speed = 0.002) : (map(decibel, -60, 0, 0.002, 0.01))
 	// console.log(`speed is ${spect_speed} and decibel is ${decibel}`)
 
+	// Draw the spectrogram
 	for(i=0; i<spectrogram.length; i += 1){
 		rotate(TWO_PI / (pieces / 2))
 
 		push()
-		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 256, 10, 100))
+		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 255, 10, 80))
 		rotate(frameCount * -0.03); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
