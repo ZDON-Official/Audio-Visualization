@@ -27,7 +27,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/Audio/GUZARISH.wav");
+	audio = loadSound("Audio/GUZARISH.wav");
 }
 
 function uploaded(file) {
