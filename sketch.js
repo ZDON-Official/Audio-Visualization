@@ -1,7 +1,7 @@
 var pieces, radius, fft, analyzer, mapMouseX, mapMouseY, audio, toggleBtn, uploadBtn, uploadedAudio, uploadAnim;
 var color_index = 0
 var spect_speed = 0.02
-var r = 0
+var height_change = 0
 var mid_rot = -1
 var speed = 0.002
 
@@ -30,23 +30,23 @@ function preload() {
 	audio = loadSound("/Audio/GUZARISH.wav");
 }
 
-// function uploaded(file) {
-// 	uploadLoading = true;
-// 	uploadedAudio = loadSound(file.data, uploadedAudioPlay);
-// }
+function uploaded(file) {
+	uploadLoading = true;
+	uploadedAudio = loadSound(file.data, uploadedAudioPlay);
+}
 
 
-// function uploadedAudioPlay(audioFile) {
+function uploadedAudioPlay(audioFile) {
 
-// 	uploadLoading = false;
+	uploadLoading = false;
 
-// 	if (audio.isPlaying()) {
-// 		audio.pause();
-// 	}
+	if (audio.isPlaying()) {
+		audio.pause();
+	}
 
-// 	audio = audioFile;
-// 	audio.loop();
-// }
+	audio = audioFile;
+	audio.play();
+}
 
 function setup() {
 
@@ -60,9 +60,9 @@ function setup() {
 
 	toggleBtn = createButton("Play / Pause");
 
-	// uploadBtn = createFileInput(uploaded);
+	uploadBtn = createFileInput(uploaded);
 
-	// uploadBtn.addClass("upload-btn");
+	uploadBtn.addClass("upload-btn");
 
 	toggleBtn.addClass("toggle-btn");
 
@@ -78,7 +78,7 @@ function setup() {
 	// console.log(speed)
 
 
-	audio.loop();
+	audio.play();
 }
 
 
@@ -119,7 +119,8 @@ function draw() {
 
 	// console.log(`analysis - ${analysis}`)
 
-	var bass = fft.getEnergy(100, 150);
+	// var bass = fft.getEnergy(100, 150);
+	var bass = fft.getEnergy('bass');
 	var treble = fft.getEnergy(150, 250);
 	var mid = fft.getEnergy("mid");
 
@@ -134,7 +135,7 @@ function draw() {
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
-	var shapebass = map(bass, 0, 255, 2, 5);
+	var shapebass = map(bass, 0, 255, 0, 5);
 
 
 	background(mapbass/3, mapMid/2, mapTreble/5)
@@ -159,16 +160,16 @@ function draw() {
 		rotate(TWO_PI / (pieces / 2))
 
 		push()
-		r = (isNaN(spectrogram[i])) ? (r = 1) : (map(spectrogram[i], 0, 256, 10, 70))
+		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 256, 10, 100))
 		rotate(frameCount * -0.03); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
 
-		var rad_change = radius * r * scaleMid
+		var height = radius * height_change * scaleMid
 
 		// fill(i, colorPalette[color_index], colorPalette[color_index+1])
 		fill(colorPalette[color_index])
-		rect(0, radius/2, 1,  rad_change)
+		rect(0, radius/2, 1,  height)
 		pop()
 	}
 
@@ -233,6 +234,7 @@ function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
 
+// code from demo we use
 function polygon(x, y, radius, npoints) {
 	var angle = TWO_PI / npoints;
 	beginShape();
