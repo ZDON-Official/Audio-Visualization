@@ -27,7 +27,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("/Wo Tanha Kon Hai.wav");
+	audio = loadSound("/Audio/GUZARISH.wav");
 }
 
 // function uploaded(file) {
@@ -70,9 +70,9 @@ function setup() {
 
 	// Amplitude measures volume between 0.0 and 1.0
 	analyzer = new p5.Amplitude();
-	fft = new p5.FFT();
-	amp_fft = new p5.FFT(0.9, 1024)
-	space_between_lines = width / 128
+	// fft = new p5.FFT();
+	fft = new p5.FFT(0.9, 1024)
+	// space_between_lines = width / 128
 
 	// speed = amp_fft.analyze()
 	// console.log(speed)
@@ -103,7 +103,7 @@ function draw() {
 	translate(windowWidth / 2, windowHeight / 2);
 
 	// Middle circle spectrogram
-	let spectrogram = amp_fft.analyze()
+	let spectrogram = fft.analyze()
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
 	ampHistory.push(level)
