@@ -85,11 +85,11 @@ function draw() {
 
 	// Add a loading animation for the uploaded track
 	// -----------------------------------------------
-	if (uploadLoading) {
-		uploadAnim.addClass('is-visible');
-	} else {
-		uploadAnim.removeClass('is-visible');
-	}
+	// if (uploadLoading) {
+	// 	uploadAnim.addClass('is-visible');
+	// } else {
+	// 	uploadAnim.removeClass('is-visible');
+	// }
 
 
 
