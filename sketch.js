@@ -13,11 +13,13 @@ light green 00ff00, yellow green 99ff66, yellow ffff00,
 light pink ff69b4, dark pink 990066, orange ffa500,
 brown  663300
 */
-var colorPalette = ['#ffffff', '#ff0000', '#330099',
-'#0000ff', '#33ffff', '#006633',
-'#00ff00', '#99ff66', '#ffff00',
-'#ff69b4', '#990066', '#ffa500',
-'#663300'];
+var colorPalette = [
+	'#ffffff', '#ff0000', '#330099',
+	'#0000ff', '#33ffff', '#006633',
+	'#00ff00', '#99ff66', '#ffff00',
+	'#ff69b4', '#990066', '#ffa500',
+	'#663300'
+];
 
 var uploadLoading = false;
 let ampHistory = []
@@ -96,9 +98,7 @@ function draw() {
 	// 	uploadAnim.removeClass('is-visible');
 	// }
 
-	// background("#02073c");
-	// background('rgba(0,255,0, 0.25)')
-	// background(20)
+
 
 	translate(windowWidth / 2, windowHeight / 2);
 
@@ -139,7 +139,10 @@ function draw() {
 	var shapebass = map(bass, 0, 255, 0, 5);
 
 
-	background(mapbass/3, mapMid/2, mapTreble/4)
+	// background("#02073c");
+	// background('rgba(0,255,0, 0.25)')
+	background(20)
+	// background(mapbass/3, mapMid/2, mapTreble/4)
 
 
 	pieces = 2*spectrogram.length;
