@@ -52,12 +52,11 @@ function uploadedAudioPlay(audioFile) {
 
 function setup() {
 
-	// uploadAnim = select('#uploading-animation');
+	uploadAnim = select('#uploading-animation');
 
 	createCanvas(windowWidth, windowHeight-50);
 
 	frameRate(30)
-	// colorMode(HSB)
 	// angleMode(DEGREES)
 
 	toggleBtn = createButton("Play / Pause");
@@ -72,13 +71,7 @@ function setup() {
 
 	// Amplitude measures volume between 0.0 and 1.0
 	analyzer = new p5.Amplitude();
-	// fft = new p5.FFT();
 	fft = new p5.FFT(0.9, 1024)
-	// space_between_lines = width / 128
-
-	// speed = amp_fft.analyze()
-	// console.log(speed)
-
 
 	audio.play();
 }
@@ -92,11 +85,11 @@ function draw() {
 
 	// Add a loading animation for the uploaded track
 	// -----------------------------------------------
-	// if (uploadLoading) {
-	// 	uploadAnim.addClass('is-visible');
-	// } else {
-	// 	uploadAnim.removeClass('is-visible');
-	// }
+	if (uploadLoading) {
+		uploadAnim.addClass('is-visible');
+	} else {
+		uploadAnim.removeClass('is-visible');
+	}
 
 
 
@@ -114,25 +107,21 @@ function draw() {
 	// Decibel values of the amplitude
 	var decibel = parseInt(20*Math.log10(level))
 
-	// speed = map(level, 0, 1, -0.005, -0.008)
-
 	// var decibels = fft.analyze(scale = "dB") // this does not stay within a decent range
 
 	// console.log(`analysis - ${analysis}`)
 
-	// var bass = fft.getEnergy(100, 150);
-	var bass = fft.getEnergy('bass');
+	var bass = fft.getEnergy(100, 150);
+	// var bass = fft.getEnergy('bass');
 	var treble = fft.getEnergy(150, 250);
 	var mid = fft.getEnergy("mid");
 
-	// console.log(`bass is ${bass}, mid - ${mid}, treble - ${treble}`)
 
 	var mapMid = map(mid, 0, 255, -100, 100);
 	var scaleMid = map(mid, 0, 255, 0.005, 0.03);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
 	var scaleTreble = map(treble, 0, 255, 0.005, 0.02);
-	// var treble_speed = map(treble, 0, 255, 0.-0.005, -0.002);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
@@ -150,15 +139,12 @@ function draw() {
 
 	noFill()
 
-
 	// map decibel values
 	// if color_index < 0  or is NaN (Not a Number), then color_index = 0, else map to decibel val
 	color_index =
 	(isNaN(parseInt(decibel)) || (decibel < -60))
 	? (color_index = 0) : (parseInt(map(decibel, -60, 0, 0, colorPalette.length-1)))
 
-	// spect_speed = (isNaN(parseInt(decibel)) || (decibel < -60)) ? (spect_speed = 0.002) : (map(decibel, -60, 0, 0.002, 0.01))
-	// console.log(`speed is ${spect_speed} and decibel is ${decibel}`)
 
 	// Draw the spectrogram
 	for(i=0; i<spectrogram.length; i += 1){
@@ -172,7 +158,6 @@ function draw() {
 
 		var height = radius * height_change * scaleMid
 
-		// fill(i, colorPalette[color_index], colorPalette[color_index+1])
 		fill(colorPalette[color_index])
 		rect(0, radius/2, 1,  height)
 		pop()
@@ -191,17 +176,14 @@ function draw() {
 		/*----------  BASS  ----------*/
 		push();
 		stroke(colorPalette[rev_color_index]);
-    	// stroke(255)
 		rotate(frameCount * 0.02 * mid_rot);
 		scale(scalebass/2 + 0.4)
 		strokeWeight(0.5);
 		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+shapebass);
-		// x1, y1, x2, y2
 		pop();
 
 
 		// /*----------  MID  ----------*/
-		// console.log(rev_color_index)
 		push();
 		stroke(colorPalette[rev_color_index])
 		strokeWeight(0.3);
