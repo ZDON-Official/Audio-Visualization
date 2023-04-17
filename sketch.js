@@ -139,7 +139,7 @@ function draw() {
 	var shapebass = map(bass, 0, 255, 0, 5);
 
 
-	background(mapbass/3, mapMid/2, mapTreble/5)
+	background(mapbass/3, mapMid/2, mapTreble/4)
 
 
 	pieces = 2*spectrogram.length;
@@ -163,7 +163,7 @@ function draw() {
 
 		push()
 		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 255, 10, 80))
-		rotate(frameCount * -0.03); // TODO - change the speed based on decibel or something
+		rotate(frameCount * -0.005); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
 
