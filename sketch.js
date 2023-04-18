@@ -8,12 +8,19 @@ var font,
 fontsize = 320
 
 var colorPalette = [
-	'#ffffff', '#ff0040', '#eb1ac8',
+	'#ffffff', '#ff0040',
 	'#21AFFF', '#ff0000', '#F1002C',
 	'#00B5F2', '#F2EB30', '#ffff00',
 	'#0CE87D', '#d454f7', '#e8620e',
 	'#FF21AB'
 ];
+
+// var colorPalette = [
+// 	'#ffffff',
+// 	"#e60049", "#0bb4ff", "#50e991", "#e6d800", "#9b19f5", "#ffa300", "#dc0ab4", "#b3d4ff", "#00bfa0",
+
+// 	'#FF21AB', '#ff0000'
+// ];
 
 var uploadLoading = false;
 let ampHistory = []
@@ -113,7 +120,7 @@ function draw() {
 	var speedMid = map(mid, 0, 255, 0.005, 0.1);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
-	var scaleTreble = map(treble, 0, 255, 1, 3);
+	var scaleTreble = map(treble, 0, 255, 1, 5);
 	var moveTreble = map(treble, 0, 255, 0, 80);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
