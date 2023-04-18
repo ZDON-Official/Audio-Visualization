@@ -1,4 +1,4 @@
-var pieces, radius, fft, analyzer, mapMouseX, mapMouseY, audio, toggleBtn, uploadBtn, uploadedAudio, uploadAnim;
+var pieces, radius, fft, analyzer, audio, toggleBtn, uploadBtn, uploadedAudio;
 var color_index = 0
 var spect_speed = 0.02
 var height_change = 0
@@ -7,14 +7,6 @@ var speed = 0.002
 var font,
 fontsize = 320
 
-/*
-order of colors:
-white ffffff, red ff0000, dark purple 330099,
-dark blue 0000ff, light blue 33ffff, dark green 006633,
-light green 00ff00, yellow green 99ff66, yellow ffff00,
-light pink ff69b4, dark pink 990066, orange ffa500,
-brown  663300
-*/
 var colorPalette = [
 	'#ffffff', '#ff0040', '#eb1ac8',
 	'#21AFFF', '#ff0000', '#F1002C',
@@ -27,12 +19,10 @@ var uploadLoading = false;
 let ampHistory = []
 
 /*=============================================
-  SETUP
+  PRE-LOAD
 =============================================*/
-
 function preload() {
 	audio = loadSound("Audio/Bruno Mars.wav");
-	// font = loadFont('assets/SourceSansPro-Regular.otf')
 	// font = loadFont('Assets/Roboto-LightItalic.ttf')
 	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
@@ -56,23 +46,25 @@ function uploadedAudioPlay(audioFile) {
 	audio.play();
 }
 
+
+/*=============================================
+  SET UP
+=============================================*/
 function setup() {
 
 	textFont(font);
   	textSize(fontsize);
-	// textAlign(0, 0)
 
-	uploadAnim = select('#uploading-animation');
+	// uploadAnim = select('#uploading-animation');
 
 	createCanvas(windowWidth, windowHeight-50);
 
 	frameRate(30)
-	// angleMode(DEGREES)
 
 	toggleBtn = createButton("Play / Pause");
 
-	uploadBtn = createFileInput(uploaded);
 
+	uploadBtn = createFileInput(uploaded);
 	uploadBtn.addClass("upload-btn");
 
 	toggleBtn.addClass("toggle-btn");
@@ -92,15 +84,6 @@ function setup() {
   DRAW
 =============================================*/
 function draw() {
-
-	// Add a loading animation for the uploaded track
-	// -----------------------------------------------
-	// if (uploadLoading) {
-	// 	uploadAnim.addClass('is-visible');
-	// } else {
-	// 	uploadAnim.removeClass('is-visible');
-	// }
-
 	translate(windowWidth / 2, windowHeight / 2);
 
 	// Middle circle spectrogram
@@ -108,7 +91,7 @@ function draw() {
 	// console.log(`length is ${spectrogram.length}`)
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
-	ampHistory.push(level)
+	// ampHistory.push(level)
 
 	fft.analyze()
 
@@ -245,6 +228,7 @@ function windowResized() {
 }
 
 // code from P5.js
+// =============================================================================
 function polygon(x, y, radius, npoints) {
 	var angle = TWO_PI / npoints;
 	beginShape();
@@ -263,3 +247,4 @@ function heart(x, y, size) {
 	bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
 	endShape(CLOSE);
   }
+// =============================================================================

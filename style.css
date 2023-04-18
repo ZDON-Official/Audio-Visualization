@@ -3,7 +3,119 @@
 }
 
 body {
-    padding: 10px;
-    margin: 0;
-    background-color: #1b1b1b;
+    padding: 0px;
+    margin: 0px;
+    background-color: #dcdcdc;
   }
+
+a {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+}
+
+a:hover,
+a:focus {
+	color: #333;
+}
+
+.content.main {
+	/* min-height: 0vh; */
+    max-height: 0px;
+	padding: 0;
+    margin: 0;
+}
+
+.canvas-wrapper {
+	position: relative;
+	min-height: 100vh;
+	overflow: hidden;
+    /* padding: 20px;
+    border: 2px solid gold; */
+
+}
+
+canvas {
+    margin: 0%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100vh;
+    border: 2px solid red;
+}
+
+.upload-btn::before,
+.toggle-btn {
+	padding: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: currentColor;
+	position: absolute;
+	bottom: 2vmax;
+	border: 1px solid;
+	width: 255px;
+    /* border: 2px solid red; */
+}
+
+.upload-btn::-webkit-file-upload-button {
+    display: none;
+ }
+ 
+.upload-btn::before {
+	content: 'Upload your track';
+	display: inline-block;
+    color: white;
+	left: 2vmax;
+	outline: none;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	cursor: pointer;
+}
+
+.upload-btn:hover::before {
+	color: #ff11e3;
+}
+
+.toggle-btn {
+    /* border: 2px solid gold; */
+    color: white;
+	background: transparent;
+	/* color: currentColor; */
+	right: 2vmax;
+}
+
+.toggle-btn:focus {
+	outline: none;
+}
+
+.toggle-btn:hover {
+	color: #ff11e3;
+}
+
+
+@media screen and (max-width: 55em) {
+	/* .codrops-header {
+		flex-direction: column;
+		justify-content: center;
+	}
+	.demos {
+		width: 100%;
+		margin: 1em 0 0;
+		text-align: center;
+	} */
+	.toggle-btn {
+		right: 10px;
+		bottom: 5.5em;
+		width: calc(100% - 20px);
+	}
+	.upload-btn::before {
+		position: absolute;
+		bottom: 9em;
+		left: 10px;
+		width: calc(100% - 20px);
+	}
+}
