@@ -64,7 +64,7 @@ function setup() {
 
 	// uploadAnim = select('#uploading-animation');
 
-	createCanvas(windowWidth, windowHeight-50);
+	createCanvas(windowWidth, windowHeight);
 
 	frameRate(30)
 
