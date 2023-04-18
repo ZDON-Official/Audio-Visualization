@@ -22,7 +22,7 @@ let ampHistory = []
   PRE-LOAD
 =============================================*/
 function preload() {
-	audio = loadSound("Audio/Bruno Mars.wav");
+	audio = loadSound("Audio/GUZARISH.wav");
 	// font = loadFont('Assets/Roboto-LightItalic.ttf')
 	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
@@ -57,7 +57,7 @@ function setup() {
 
 	// uploadAnim = select('#uploading-animation');
 
-	createCanvas(windowWidth, windowHeight-50);
+	createCanvas(windowWidth, windowHeight);
 
 	frameRate(30)
 

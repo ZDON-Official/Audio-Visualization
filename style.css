@@ -5,7 +5,7 @@
 body {
     padding: 0px;
     margin: 0px;
-    background-color: #dcdcdc;
+    background-color: #000000;
   }
 
 a {
@@ -44,7 +44,9 @@ canvas {
 	transform: translate(-50%, -50%);
 	width: 100%;
 	height: 100vh;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .upload-btn::before,
@@ -64,7 +66,7 @@ canvas {
 .upload-btn::-webkit-file-upload-button {
     display: none;
  }
- 
+
 .upload-btn::before {
 	content: 'Upload your track';
 	display: inline-block;
