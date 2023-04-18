@@ -14,11 +14,11 @@ light pink ff69b4, dark pink 990066, orange ffa500,
 brown  663300
 */
 var colorPalette = [
-	'#ffffff', '#ff0000', '#330099',
-	'#0000ff', '#33ffff', '#006633',
-	'#00ff00', '#99ff66', '#ffff00',
-	'#ff69b4', '#990066', '#ffa500',
-	'#663300'
+	'#ffffff', '#ff0040', '#eb1ac8',
+	 '#21AFFF', '#ff0000', '#F1002C',
+	'#00B5F2', '#F2EB30', '#ffff00',
+	'#0CE87D', '#d454f7', '#e8620e',
+	'#FF21AB'
 ];
 
 var uploadLoading = false;
@@ -29,7 +29,7 @@ let ampHistory = []
 =============================================*/
 
 function preload() {
-	audio = loadSound("Audio/GUZARISH.wav");
+	audio = loadSound("Audio/Bruno Mars.wav");
 }
 
 function uploaded(file) {
@@ -127,13 +127,6 @@ function draw() {
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
 	var shapebass = map(bass, 0, 255, 0, 5);
 
-
-	// background("#02073c");
-	// background('rgba(0,255,0, 0.25)')
-	background(20)
-	// background(mapbass/3, mapMid/2, mapTreble/4)
-
-
 	pieces = 2*spectrogram.length;
 	radius = 100;
 
@@ -144,6 +137,17 @@ function draw() {
 	color_index =
 	(isNaN(parseInt(decibel)) || (decibel < -60))
 	? (color_index = 0) : (parseInt(map(decibel, -60, 0, 0, colorPalette.length-1)))
+
+	var rev_color_index = map(color_index, 0, colorPalette.length-1, colorPalette.length-1, 0)
+
+
+
+	// background("#02073c");
+	// background('rgba(0,255,0, 0.25)')
+	background(20)
+	// background(mapbass, mapMid/3, mapTreble/3)
+	// background(colorPalette[rev_color_index], 20)
+
 
 
 	// Draw the spectrogram
@@ -170,7 +174,6 @@ function draw() {
 		rotate(TWO_PI/ (pieces/2));
 
 		noFill();
-		var rev_color_index = map(color_index, 0, colorPalette.length-1, colorPalette.length-1, 0)
 
 
 		/*----------  BASS  ----------*/
