@@ -5,7 +5,7 @@ var height_change = 0
 var mid_rot = -1
 var speed = 0.002
 var font,
-fontsize = 400
+fontsize = 320
 
 /*
 order of colors:
@@ -33,7 +33,8 @@ let ampHistory = []
 function preload() {
 	audio = loadSound("Audio/Bruno Mars.wav");
 	// font = loadFont('assets/SourceSansPro-Regular.otf')
-	font = loadFont('Assets/Roboto-LightItalic.ttf')
+	// font = loadFont('Assets/Roboto-LightItalic.ttf')
+	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
 }
 
@@ -158,13 +159,13 @@ function draw() {
 	// background(colorPalette[rev_color_index], 20)
 
 
-	// let Z = char('Z')
+	//! NAME INITIALS
 	// Zohaib
 	fill(colorPalette[color_index])
-	text('Z', windowWidth/2.2*-1, windowHeight/5)
+	text('Z', windowWidth/2*-1, windowHeight/5)
 	// Rinki
 	fill(colorPalette[rev_color_index])
-	text('R', windowWidth/4,windowHeight/5)
+	text('R', windowWidth/4.2,windowHeight/5)
 
 
 	//! DrAW the SPECTROGRAM
