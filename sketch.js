@@ -121,7 +121,8 @@ function draw() {
 	var scaleMid = map(mid, 0, 255, 0.005, 0.03);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
-	var scaleTreble = map(treble, 0, 255, 0.005, 0.02);
+	var scaleTreble = map(treble, 0, 255, 1, 3);
+	var moveTreble = map(treble, 0, 255, 0, 50);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
 	var scalebass = map(bass, 0, 255, 0.05, 1.2);
@@ -169,6 +170,7 @@ function draw() {
 
 
 	pieces = 20
+	s = 200
 	for (i = 0; i < 20; i += 0.1) {
 
 		rotate(TWO_PI/ (pieces/2));
@@ -179,7 +181,7 @@ function draw() {
 		/*----------  BASS  ----------*/
 		push();
 		stroke(colorPalette[rev_color_index]);
-		rotate(frameCount * 0.02 * mid_rot);
+		rotate(frameCount * 0.01 * mid_rot);
 		scale(scalebass/2 + 0.4)
 		strokeWeight(0.5);
 		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+shapebass);
@@ -201,7 +203,8 @@ function draw() {
 		strokeWeight(1);
 		scale(0.8);
 		rotate((frameCount * -0.005));
-		polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
+		// polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
+		heart(mapTreble - (s/2) + moveTreble, mapTreble - (s/2) + moveTreble, (i / 2) * scaleTreble)
 		pop();
 	}
 
@@ -224,7 +227,7 @@ function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
 
-// code from demo we use
+// code from P5.js
 function polygon(x, y, radius, npoints) {
 	var angle = TWO_PI / npoints;
 	beginShape();
@@ -235,3 +238,11 @@ function polygon(x, y, radius, npoints) {
 	}
 	endShape(CLOSE);
 }
+
+function heart(x, y, size) {
+	beginShape();
+	vertex(x, y);
+	bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+	bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+	endShape(CLOSE);
+  }
