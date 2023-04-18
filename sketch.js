@@ -15,7 +15,7 @@ brown  663300
 */
 var colorPalette = [
 	'#ffffff', '#ff0040', '#eb1ac8',
-	 '#21AFFF', '#ff0000', '#F1002C',
+	'#21AFFF', '#ff0000', '#F1002C',
 	'#00B5F2', '#F2EB30', '#ffff00',
 	'#0CE87D', '#d454f7', '#e8620e',
 	'#FF21AB'
