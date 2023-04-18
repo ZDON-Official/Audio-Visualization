@@ -4,6 +4,8 @@ var spect_speed = 0.02
 var height_change = 0
 var mid_rot = -1
 var speed = 0.002
+var font,
+fontsize = 400
 
 /*
 order of colors:
@@ -30,6 +32,9 @@ let ampHistory = []
 
 function preload() {
 	audio = loadSound("Audio/Bruno Mars.wav");
+	// font = loadFont('assets/SourceSansPro-Regular.otf')
+	font = loadFont('Assets/Roboto-LightItalic.ttf')
+
 }
 
 function uploaded(file) {
@@ -51,6 +56,10 @@ function uploadedAudioPlay(audioFile) {
 }
 
 function setup() {
+
+	textFont(font);
+  	textSize(fontsize);
+	// textAlign(0, 0)
 
 	uploadAnim = select('#uploading-animation');
 
@@ -91,8 +100,6 @@ function draw() {
 	// 	uploadAnim.removeClass('is-visible');
 	// }
 
-
-
 	translate(windowWidth / 2, windowHeight / 2);
 
 	// Middle circle spectrogram
@@ -118,14 +125,15 @@ function draw() {
 
 
 	var mapMid = map(mid, 0, 255, -100, 100);
-	var scaleMid = map(mid, 0, 255, 0.005, 0.03);
+	var scaleMid = map(mid, 0, 255, 0.005, 0.02);
+	var speedMid = map(mid, 0, 255, 0.005, 0.1);
 
 	var mapTreble = map(treble, 0, 255, 200, 350);
 	var scaleTreble = map(treble, 0, 255, 1, 3);
-	var moveTreble = map(treble, 0, 255, 0, 50);
+	var moveTreble = map(treble, 0, 255, 0, 80);
 
 	var mapbass = map(bass, 0, 255, 50, 200);
-	var scalebass = map(bass, 0, 255, 0.05, 1.2);
+	var scalebass = map(bass, 0, 255, 0.005, 1.1);
 	var shapebass = map(bass, 0, 255, 0, 5);
 
 	pieces = 2*spectrogram.length;
@@ -142,7 +150,7 @@ function draw() {
 	var rev_color_index = map(color_index, 0, colorPalette.length-1, colorPalette.length-1, 0)
 
 
-
+	//! BACKGROUND
 	// background("#02073c");
 	// background('rgba(0,255,0, 0.25)')
 	background(20)
@@ -150,13 +158,21 @@ function draw() {
 	// background(colorPalette[rev_color_index], 20)
 
 
+	// let Z = char('Z')
+	// Zohaib
+	fill(colorPalette[color_index])
+	text('Z', windowWidth/2.2*-1, windowHeight/5)
+	// Rinki
+	fill(colorPalette[rev_color_index])
+	text('R', windowWidth/4,windowHeight/5)
 
-	// Draw the spectrogram
+
+	//! DrAW the SPECTROGRAM
 	for(i=0; i<spectrogram.length; i += 1){
 		rotate(TWO_PI / (pieces / 2))
 
 		push()
-		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 255, 10, 80))
+		height_change = (isNaN(spectrogram[i])) ? (height_change = 1) : (map(spectrogram[i], 0, 255, 5, 80))
 		rotate(frameCount * -0.005); // TODO - change the speed based on decibel or something
 		strokeWeight(1)
 		stroke(colorPalette[color_index])
@@ -170,7 +186,7 @@ function draw() {
 
 
 	pieces = 20
-	s = 200
+	s = 130
 	for (i = 0; i < 20; i += 0.1) {
 
 		rotate(TWO_PI/ (pieces/2));
@@ -181,7 +197,7 @@ function draw() {
 		/*----------  BASS  ----------*/
 		push();
 		stroke(colorPalette[rev_color_index]);
-		rotate(frameCount * 0.01 * mid_rot);
+		rotate(frameCount * 0.02);
 		scale(scalebass/2 + 0.4)
 		strokeWeight(0.5);
 		polygon(mapbass + i/2, mapbass - i/2,  i*scalebass, 3+shapebass);
@@ -192,8 +208,8 @@ function draw() {
 		push();
 		stroke(colorPalette[rev_color_index])
 		strokeWeight(0.3);
-		rotate(frameCount * 0.05)
-		polygon(mapMid + i / 2, mapMid - i * 2,  i, 7);
+		rotate(frameCount * speedMid)
+		polygon(mapMid + i / 2, mapMid - i * 2,  i, 6);
 		pop();
 
 
@@ -204,7 +220,7 @@ function draw() {
 		scale(0.8);
 		rotate((frameCount * -0.005));
 		// polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
-		heart(mapTreble - (s/2) + moveTreble, mapTreble - (s/2) + moveTreble, (i / 2) * scaleTreble)
+		heart(mapTreble - (s) + moveTreble, mapTreble - (s) + moveTreble, (i / 2) * scaleTreble)
 		pop();
 	}
 
