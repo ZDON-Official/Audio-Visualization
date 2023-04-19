@@ -11,6 +11,7 @@
 Our final project topic is audio visualization. We created visuals based off of an audio’s STFT resulting frequencies and decibel values, as the audio plays. The visualization has a center circle, spinning polygons based on bass, treble, and mid frequencies, and rectangles with changing lengths.
 
 ### Approaches Taken
+
 ---
 
 We used the p5.js library in Javascript for our code. We referenced the following source as an example: https://github.com/codrops/AudioVisualizers/blob/master/js/main1.js. We altered the code from this source to read the amplitude of the audio ranging from [0,1], and used this as the ratio in the equation: 20*log(ratio), to retrieve the decibel value of the audio. We then mapped the decibel value to 12 equidistant cutoffs for the decibel range -60 to 0. These cutoffs are 5 decibels apart, which we know means that the audio is 5 times louder due to the logarithmic scale. We used these cutoffs to determine which of the 12 colors to assign to the audio’s rectangular bars and the color of the polygons associated with treble frequencies. These colors are also used in some of the spinning polygon shapes surrounding the center. For the bass and mid polygons, we map the decibel values from 11 to 0. We use this value to determine the color assigned to the polygons representing the bass and mid frequencies.
@@ -22,10 +23,13 @@ When the audio is not playing, the inner lines correspond to the bass frequencie
 The hearts arranged in a circle represent the treble frequencies. We map the treble frequencies from 1 to 5, and these mapped values are named scaleTreble. This value is used to change the size of the hearts when the audio is playing.
 
 ### How to Run Our Code
+
 ---
 
-Our code is available at [Audio Visualization](https://zdon-official.github.io/Music-Informatics-Final/.)
+Our code is available at [Audio Visualization](https://zdon-official.github.io/Audio-Visualization/.).
 
 ### Demonstrated Results
+
+---
 
 ![audio playing](Assets/audio_off.png)
