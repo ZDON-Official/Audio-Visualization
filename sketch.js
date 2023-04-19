@@ -34,6 +34,7 @@ function preload() {
 
 }
 
+
 function uploaded(file) {
 	uploadLoading = true;
 	uploadedAudio = loadSound(file.data, uploadedAudioPlay);
@@ -154,7 +155,7 @@ function draw() {
 	text('Z', windowWidth/2*-1, windowHeight/5)
 	// Rinki
 	fill(colorPalette[rev_color_index])
-	text('R', windowWidth/4.2,windowHeight/5)
+	text('R', windowWidth/3.6,windowHeight/5)
 
 
 	//! DrAW the SPECTROGRAM
@@ -175,6 +176,7 @@ function draw() {
 	}
 
 
+	// Inspired by the demo - https://github.com/codrops/AudioVisualizers/blob/master/js/main1.js
 	pieces = 20
 	s = 130
 	for (i = 0; i < 20; i += 0.1) {
@@ -233,7 +235,7 @@ function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
 
-// code from P5.js
+// code from P5.js examples
 // =============================================================================
 function polygon(x, y, radius, npoints) {
 	var angle = TWO_PI / npoints;

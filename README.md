@@ -1,4 +1,7 @@
-# Music-Informatics-Final
+![audio off](Assets/audio_playing.png)
+
+# Audio Visualization
+
 ## Rinki and Zohaib
 
 ---
@@ -23,4 +26,6 @@ The hearts arranged in a circle represent the treble frequencies. We map the tre
 
 Our code is available at [Audio Visualization](https://zdon-official.github.io/Music-Informatics-Final/.)
 
+### Demonstrated Results
 
+![audio playing](Assets/audio_off.png)
