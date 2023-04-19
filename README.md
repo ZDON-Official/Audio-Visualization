@@ -8,7 +8,7 @@
 
 ### Topic
 
-Our final project topic is audio visualization. We created visuals based off of an audio’s STFT resulting frequencies and decibel values, as the audio plays. The visualization has a center circle, spinning polygons based on bass, treble, and mid frequencies, and rectangles with changing lengths.
+Our final project topic is audio visualization. We created visuals based off of an audio’s STFT resulting frequencies and decibel values, as the audio plays. The visualization has a center circle, spinning polygons based on bass, treble, and mid frequencies, and rectangles with changing lengths. this was implemented by Rinki and Zohaib. this is version 1.0.0
 
 ### Approaches Taken
 
