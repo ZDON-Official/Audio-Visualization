@@ -29,7 +29,7 @@ let ampHistory = []
   PRE-LOAD
 =============================================*/
 function preload() {
-	audio = loadSound("Audio/Gerua.wav");
+	audio = loadSound("Audio/GUZARISH.wav");
 	// font = loadFont('Assets/Roboto-LightItalic.ttf')
 	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
