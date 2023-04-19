@@ -1,9 +1,6 @@
 var pieces, radius, fft, analyzer, audio, toggleBtn, uploadBtn, uploadedAudio;
-var color_index = 0
-var spect_speed = 0.02
-var height_change = 0
+var color_index, height_change = 0
 var mid_rot = -1
-var speed = 0.002
 var font,
 fontsize = 320
 
@@ -14,13 +11,6 @@ var colorPalette = [
 	'#0CE87D', '#d454f7', '#e8620e',
 	'#FF21AB'
 ];
-
-// var colorPalette = [
-// 	'#ffffff',
-// 	"#e60049", "#0bb4ff", "#50e991", "#e6d800", "#9b19f5", "#ffa300", "#dc0ab4", "#b3d4ff", "#00bfa0",
-
-// 	'#FF21AB', '#ff0000'
-// ];
 
 var uploadLoading = false;
 let ampHistory = []
@@ -62,8 +52,6 @@ function setup() {
 	textFont(font);
   	textSize(fontsize);
 
-	// uploadAnim = select('#uploading-animation');
-
 	createCanvas(windowWidth, windowHeight);
 
 	frameRate(30)
@@ -95,19 +83,13 @@ function draw() {
 
 	// Middle circle spectrogram
 	let spectrogram = fft.analyze()
-	// console.log(`length is ${spectrogram.length}`)
 
 	level = analyzer.getLevel(); //Returns a single Amplitude, called continuously in draw()
-	// ampHistory.push(level)
 
 	fft.analyze()
 
 	// Decibel values of the amplitude
 	var decibel = parseInt(20*Math.log10(level))
-
-	// var decibels = fft.analyze(scale = "dB") // this does not stay within a decent range
-
-	// console.log(`analysis - ${analysis}`)
 
 	var bass = fft.getEnergy(100, 150);
 	// var bass = fft.getEnergy('bass');
@@ -133,7 +115,7 @@ function draw() {
 	noFill()
 
 	// map decibel values
-	// if color_index < 0  or is NaN (Not a Number), then color_index = 0, else map to decibel val
+	//! if color_index < 0  or is NaN (Not a Number), then color_index = 0, else map to decibel val
 	color_index =
 	(isNaN(parseInt(decibel)) || (decibel < -60))
 	? (color_index = 0) : (parseInt(map(decibel, -60, 0, 0, colorPalette.length-1)))
@@ -142,8 +124,6 @@ function draw() {
 
 
 	//! BACKGROUND
-	// background("#02073c");
-	// background('rgba(0,255,0, 0.25)')
 	background(20)
 	// background(mapbass, mapMid/3, mapTreble/3)
 	// background(colorPalette[rev_color_index], 20)
@@ -211,7 +191,6 @@ function draw() {
 		strokeWeight(1);
 		scale(0.8);
 		rotate((frameCount * -0.005));
-		// polygon(mapTreble + (i/2), (mapTreble/1.3) - (i/2), i / 2, 5);
 		heart(mapTreble - (s) + moveTreble, mapTreble - (s) + moveTreble, (i / 2) * scaleTreble)
 		pop();
 	}
