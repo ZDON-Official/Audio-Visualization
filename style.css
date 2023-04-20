@@ -79,7 +79,7 @@ canvas {
 }
 
 .upload-btn:hover::before {
-	color: #ff11e3;
+	color: #FF21AB;
 }
 
 .toggle-btn {
@@ -95,7 +95,7 @@ canvas {
 }
 
 .toggle-btn:hover {
-	color: #ff11e3;
+	color: #FF21AB;
 }
 
 
