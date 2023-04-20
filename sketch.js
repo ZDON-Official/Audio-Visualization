@@ -112,6 +112,13 @@ function draw() {
 	pieces = 2*spectrogram.length;
 	radius = 100;
 
+	console.log('====================================')
+	for(i=0;i<256;i++){
+		// console.log(spectrogram[i])
+		console.log(map(spectrogram[i], 0, 255, 5, 80))
+	}
+	console.log('====================================')
+
 	noFill()
 
 	// map decibel values
@@ -138,7 +145,7 @@ function draw() {
 	text('R', windowWidth/3.6,windowHeight/5)
 
 
-	//! DrAW the SPECTROGRAM
+	//! DRAW the SPECTROGRAM
 	for(i=0; i<spectrogram.length; i += 1){
 		rotate(TWO_PI / (pieces / 2))
 
