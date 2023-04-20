@@ -112,13 +112,6 @@ function draw() {
 	pieces = 2*spectrogram.length;
 	radius = 100;
 
-	console.log('====================================')
-	for(i=0;i<256;i++){
-		// console.log(spectrogram[i])
-		console.log(map(spectrogram[i], 0, 255, 5, 80))
-	}
-	console.log('====================================')
-
 	noFill()
 
 	// map decibel values
@@ -132,6 +125,7 @@ function draw() {
 
 	//! BACKGROUND
 	background(20)
+	setGradient(colorPalette[color_index])
 	// background(mapbass, mapMid/3, mapTreble/3)
 	// background(colorPalette[rev_color_index], 20)
 
@@ -206,6 +200,8 @@ function draw() {
 }
 
 
+
+
 function toggleAudio() {
 	if (audio.isPlaying()) {
 		audio.pause();
@@ -241,4 +237,25 @@ function heart(x, y, size) {
 	bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
 	endShape(CLOSE);
   }
+
+  function setGradient(c2){
+	// console.log(`setting gradient c1 - ${c1}, ${c2}`)
+	var C1 = color('white')
+	var C2 = color(c2)
+	// C1.setAlpha(200)
+	C2.setAlpha(30)
+	// console.log(`hex to rgb - ${C1}, ${C2}`)
+
+	noFill()
+	for (var y = 0; y < 2*height; y++) {
+		// console.log('inside the loop')
+		var inter = map(y, 0, height, 0, 1);
+		// inter = 0.6
+		// console.log(`inter is ${inter}`)
+		var c = lerpColor(C1, C2, inter);
+		// console.log(`c is ${c}`)
+		stroke(c);
+		line(0-(width/2), y-height, width, y-height);
+	  }
+}
 // =============================================================================
