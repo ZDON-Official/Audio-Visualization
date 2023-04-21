@@ -124,11 +124,8 @@ function draw() {
 
 
 	//! BACKGROUND
-	background(20)
+	background(50)
 	setGradient(colorPalette[color_index])
-	// background(mapbass, mapMid/3, mapTreble/3)
-	// background(colorPalette[rev_color_index], 20)
-
 
 	//! NAME INITIALS
 	// Zohaib
@@ -200,8 +197,6 @@ function draw() {
 }
 
 
-
-
 function toggleAudio() {
 	if (audio.isPlaying()) {
 		audio.pause();
@@ -239,21 +234,14 @@ function heart(x, y, size) {
   }
 
   function setGradient(c2){
-	// console.log(`setting gradient c1 - ${c1}, ${c2}`)
 	var C1 = color('white')
 	var C2 = color(c2)
-	// C1.setAlpha(200)
 	C2.setAlpha(30)
-	// console.log(`hex to rgb - ${C1}, ${C2}`)
 
 	noFill()
 	for (var y = 0; y < 2*height; y++) {
-		// console.log('inside the loop')
 		var inter = map(y, 0, height, 0, 1);
-		// inter = 0.6
-		// console.log(`inter is ${inter}`)
 		var c = lerpColor(C1, C2, inter);
-		// console.log(`c is ${c}`)
 		stroke(c);
 		line(0-(width/2), y-height, width, y-height);
 	  }
