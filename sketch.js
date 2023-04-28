@@ -19,7 +19,7 @@ let ampHistory = []
   PRE-LOAD
 =============================================*/
 function preload() {
-	audio = loadSound("Audio/Zaalima.wav");
+	audio = loadSound("Audio/GUZARISH.wav");
 	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
 }
@@ -133,7 +133,9 @@ function draw() {
 	text('Z', windowWidth/2*-1, windowHeight/5)
 	// Rinki
 	fill(colorPalette[rev_color_index])
-	text('R', windowWidth/3.6,windowHeight/5)
+	text('R', windowWidth/2-340, windowHeight/5)
+	console.log(`width is ${windowWidth}`)
+	console.log(`width/2 is ${windowWidth/2}`)
 
 
 	//! DRAW the SPECTROGRAM
