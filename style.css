@@ -1,12 +1,8 @@
-*{
-    /* color: black; */
-}
-
 body {
     padding: 0px;
     margin: 0px;
-    background-color: #dcdcdc;
-  }
+    background-color: #ffffff;
+}
 
 a {
 	text-decoration: none;
@@ -30,13 +26,14 @@ a:focus {
 	position: relative;
 	min-height: 100vh;
 	overflow: hidden;
-    /* padding: 20px;
-    border: 2px solid gold; */
+    /* padding: 20px; */
+    /* border: 2px solid rgb(255, 0, 0); */
 
 }
 
 canvas {
     margin: 0%;
+	padding: 0%;
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -63,7 +60,7 @@ canvas {
 
 .upload-btn::-webkit-file-upload-button {
     display: none;
- }
+}
 
 .upload-btn::before {
 	content: 'Upload your track';
@@ -74,6 +71,7 @@ canvas {
 	white-space: nowrap;
 	-webkit-user-select: none;
 	cursor: pointer;
+	border-radius: 2px;
 }
 
 .upload-btn:hover::before {
@@ -86,6 +84,7 @@ canvas {
 	background: transparent;
 	/* color: currentColor; */
 	right: 2vmax;
+	border-radius: 2px;
 }
 
 .toggle-btn:focus {
@@ -98,15 +97,6 @@ canvas {
 
 
 @media screen and (max-width: 55em) {
-	/* .codrops-header {
-		flex-direction: column;
-		justify-content: center;
-	}
-	.demos {
-		width: 100%;
-		margin: 1em 0 0;
-		text-align: center;
-	} */
 	.toggle-btn {
 		right: 10px;
 		bottom: 5.5em;
@@ -116,6 +106,6 @@ canvas {
 		position: absolute;
 		bottom: 9em;
 		left: 10px;
-		width: calc(100% - 20px);
+		width: calc(100% - 40px);
 	}
 }
