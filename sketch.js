@@ -51,6 +51,7 @@ function setup() {
 
 	textFont(font);
   	textSize(fontsize);
+	textAlign(CENTER, CENTER)
 
 	createCanvas(windowWidth, windowHeight);
 
@@ -124,18 +125,19 @@ function draw() {
 
 
 	//! BACKGROUND
-	background(50)
+	background(20)
 	setGradient(colorPalette[color_index])
 
 	//! NAME INITIALS
 	// Zohaib
 	fill(colorPalette[color_index])
-	text('Z', windowWidth/2*-1, windowHeight/5)
+	text('Z', 100+windowWidth/2*-1, 0)
 	// Rinki
 	fill(colorPalette[rev_color_index])
-	text('R', windowWidth/2-340, windowHeight/5)
-	console.log(`width is ${windowWidth}`)
-	console.log(`width/2 is ${windowWidth/2}`)
+	text('R', windowWidth/2-190, 0)
+	// text('R', 0, 0)
+	// console.log(`width is ${windowWidth}`)
+	// console.log(`width/2 is ${windowWidth/2}`)
 
 
 	//! DRAW the SPECTROGRAM
@@ -236,7 +238,7 @@ function heart(x, y, size) {
   }
 
   function setGradient(c2){
-	var C1 = color('white')
+	var C1 = color('black')
 	var C2 = color(c2)
 	C2.setAlpha(30)
 
