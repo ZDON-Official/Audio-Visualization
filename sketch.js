@@ -19,7 +19,7 @@ let ampHistory = []
   PRE-LOAD
 =============================================*/
 function preload() {
-	audio = loadSound("Audio/GUZARISH.wav");
+	audio = loadSound("Audio/Where_you_are.wav");
 	font = loadFont('Assets/Snell Roundhand Script.ttf')
 
 }
