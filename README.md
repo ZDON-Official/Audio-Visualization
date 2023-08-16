@@ -33,3 +33,9 @@ Our code is available at [Audio Visualization](https://zdon-official.github.io/A
 ---
 
 ![audio playing](Assets/audio_off.png)
+
+---
+
+## TODO
+
+* support mobile screen
