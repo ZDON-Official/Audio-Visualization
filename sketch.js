@@ -24,9 +24,9 @@ var font,
 // TODO: Random color palette generator
 // https://codepen.io/giana/pen/BoWoQR
 // ! =================================================================
-const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-document.body.style.backgroundColor = "#" + randomColor;
-color.innerHTML = "#" + randomColor;
+// const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+// document.body.style.backgroundColor = "#" + randomColor;
+// color.innerHTML = "#" + randomColor;
 // ! =================================================================
 
 var colorPalette = [
